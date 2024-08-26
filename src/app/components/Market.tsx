@@ -156,23 +156,20 @@ const Table: React.FC = () => {
       &lt;
     </button>
   </a>
-  {Array.from(
-    { length: Math.min(totalPages, 6) },
-    (_, i) => i + 1
-  ).map((num) => (
-    <a href="#market" key={num}> {/* Add key here */}
-      <button
-        onClick={() => handlePageChange(num)}
-        className={`px-3 py-1 rounded-full text-m font-medium ${
-          num === currentPage
-            ? "bg-gradient-to-tr from-blue-700 via-purple-600-500 to-pink-500 text-white"
-            : "bg-gray-200 text-gray-600"
-        }`}
-      >
-        {num}
-      </button>
-    </a>
-  ))}
+  {Array.from({ length: Math.min(totalPages, 6) }, (_, i) => i + 1).map((num) => (
+  <a href="#market" key={`page-link-${num}`}>
+    <button
+      onClick={() => handlePageChange(num)}
+      className={`px-3 py-1 rounded-full text-m font-medium ${
+        num === currentPage
+          ? "bg-gradient-to-tr from-blue-700 via-purple-600-500 to-pink-500 text-white"
+          : "bg-gray-200 text-gray-600"
+      }`}
+    >
+      {num}
+    </button>
+  </a>
+))}
   <a href="#market">
     <button
       onClick={() => handlePageChange(currentPage + 1)}
