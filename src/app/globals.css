@@ -132,13 +132,3 @@ html {
   scrollbar-color: #610AEC #f1f1f1;
   scrollbar-width: thin;
 }
-
-
-.table-container thead {
-  background: linear-gradient(to right, #1E40AF, #6D28D9, #EC4899); 
-  
-}
-
-.table-container th {
-  background: transparent;
-}

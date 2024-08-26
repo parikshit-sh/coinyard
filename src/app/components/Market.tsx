@@ -69,7 +69,7 @@ const Table: React.FC = () => {
       <div className="table-container overflow-x-auto bg-transparent shadow-md rounded-md max-w-[344px] mx-auto sm:max-w-full">
         <div className="min-w-full">
           <table id="mkt" className="min-w-full divide-y divide-gray-200 table-fixed sm:table-auto">
-            <thead className="bg-gradient-to-r from-blue-600 via-[#610AEC] to-pink-400 border-none">
+            <thead className="bg-[#610AEC] border-none">
               <tr>
                 <th className="px-2 py-2 text-left text-xl font-semibold tracking-wider sm:px-6 sm:py-3 text-white border-none">
                   Coin
