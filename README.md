@@ -1,36 +1,19 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# TokenStats 🚀
 
-## Getting Started
+## Description
+**TokenStats** is a **cryptocurrency tracker** built using **Next.js 14**, **Tailwind CSS**, and the **CoinGecko API**. It provides **real-time updates** on cryptocurrency prices, market caps, and other essential metrics. With an minimal interface and responsive design, TokenStats offers a seamless experience for tracking and analyzing crypto assets. 📊
 
-First, run the development server:
+## Features
+- **Real-time cryptocurrency price updates**
+- market statistics including **volume** and **market cap**
+- Responsive design optimized for various screen sizes
+- Beautiful UI built with **Tailwind CSS**
+- Fetches data from **CoinGecko API**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Screenshots
+![TokenStats__1](https://github.com/user-attachments/assets/f3ebcc54-0b20-4de7-84b0-2048859f8321)
+![TokenStats__2](https://github.com/user-attachments/assets/6e97fd23-9a40-45d4-96d6-37c636e95604)
+![TokenStats_MOB](https://github.com/user-attachments/assets/49826a13-9c64-4568-a620-05dd3b039557)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## Demo
+Check out the live demo of TokenStats [here](https://tokenstats.vercel.app/).
