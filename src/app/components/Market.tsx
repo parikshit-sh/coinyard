@@ -147,43 +147,43 @@ const Table: React.FC = () => {
             </table>
           </div>
           <div className="px-6 py-3 flex items-center justify-center space-x-2">
-            <a href="#market">
-              <button
-                onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-                className="bg-gray-300 text-gray-600 px-3 py-1 rounded-full text-sm font-medium"
-              >
-                &lt;
-              </button>
-            </a>
-            {Array.from(
-              { length: Math.min(totalPages, 6) },
-              (_, i) => i + 1
-            ).map((num) => (
-              <a href="#market">
-                <button
-                  key={num}
-                  onClick={() => handlePageChange(num)}
-                  className={`px-3 py-1 rounded-full text-m font-medium ${
-                    num === currentPage
-                      ? "bg-gradient-to-tr from-blue-700 via-purple-600-500 to-pink-500 text-white"
-                      : "bg-gray-200 text-gray-600"
-                  }`}
-                >
-                  {num}
-                </button>
-              </a>
-            ))}
-            <a href="#market">
-              <button
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage === totalPages}
-                className="bg-gray-300 text-gray-600 px-3 py-1 rounded-full text-m font-medium"
-              >
-                &gt;
-              </button>
-            </a>
-          </div>
+  <a href="#market">
+    <button
+      onClick={() => handlePageChange(currentPage - 1)}
+      disabled={currentPage === 1}
+      className="bg-gray-300 text-gray-600 px-3 py-1 rounded-full text-sm font-medium"
+    >
+      &lt;
+    </button>
+  </a>
+  {Array.from(
+    { length: Math.min(totalPages, 6) },
+    (_, i) => i + 1
+  ).map((num) => (
+    <a href="#market" key={num}> {/* Add key here */}
+      <button
+        onClick={() => handlePageChange(num)}
+        className={`px-3 py-1 rounded-full text-m font-medium ${
+          num === currentPage
+            ? "bg-gradient-to-tr from-blue-700 via-purple-600-500 to-pink-500 text-white"
+            : "bg-gray-200 text-gray-600"
+        }`}
+      >
+        {num}
+      </button>
+    </a>
+  ))}
+  <a href="#market">
+    <button
+      onClick={() => handlePageChange(currentPage + 1)}
+      disabled={currentPage === totalPages}
+      className="bg-gray-300 text-gray-600 px-3 py-1 rounded-full text-m font-medium"
+    >
+      &gt;
+    </button>
+  </a>
+</div>
+
         </div>
       )}
     </div>
