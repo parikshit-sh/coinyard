@@ -1,0 +1,134 @@
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import "~slick-carousel/slick/slick.css";
+@import "~slick-carousel/slick/slick-theme.css";
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap');
+
+
+
+body {
+  background-image: radial-gradient(circle, #230651, #1e064f, #19064c, #13064a, #0e0547, #070743, #02073f, #00073a, #000831, #000928, #00091e, #000713);
+  background-position: top right;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  color: white;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.hero-section {
+  position: relative;
+  overflow: hidden;
+}
+
+
+
+.tableHeaderChild1 {
+  width: 46%;
+}
+
+.w80 {
+  width: 83% !important;
+
+  height: 0.1rem !important;
+}
+
+.cryptoDataMainTable {
+  width: 84%;
+}
+html,
+body {
+  overflow-x: hidden !important;
+}
+.table-container{
+  overflow-x:auto;
+}
+
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.table-container {
+  will-change: opacity, transform;
+}
+html {
+  scroll-behavior: smooth;
+}
+
+@media (max-width:400px){
+  .btn{
+    width: 22rem;
+  }
+}
+@media (min-width:300px){
+  .btn{
+    width: 16rem;
+  }
+  
+}
+@media (min-width:300px){
+  .hero-btn{
+    width: 22rem;
+  }
+  
+}
+@media (min-width:300px){
+  .coin-id{
+    display: none;
+  }
+}
+
+.header-scrolled {
+  backdrop-filter: blur(8px); 
+  transition: background-color 0.3s ease;
+}
+
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh; 
+  z-index: 60; 
+  overflow-y: auto;
+  transition: transform 0.3s ease-in-out;
+  transform: translateX(-100%);
+}
+
+.mobile-menu.open {
+  transform: translateX(0);
+}
+*{
+  font-family: 'Inter', sans-serif;
+  font-display: swap;
+}
+
+/* styles/globals.css */
+
+/* WebKit Browsers */
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #610AEC;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #5a0cb9;
+}
+
+/* Firefox */
+html {
+  scrollbar-color: #610AEC #f1f1f1;
+  scrollbar-width: thin;
+}
