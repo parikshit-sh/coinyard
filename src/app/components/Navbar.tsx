@@ -131,7 +131,7 @@ const Navbar = () => {
         {menuOpen && (
           <motion.div
             key="mobile-menu"
-            className="fixed inset-0  bg-transparent backdrop-blur-2xl text-white uppercase text-2xl shadow-lg z-50 flex flex-col items-center justify-center overflow-hidden"
+            className="fixed inset-0  bg-[#040740] backdrop-blur-2xl text-white uppercase text-2xl shadow-lg z-50 flex flex-col items-center justify-center overflow-hidden"
             initial={{ opacity: 0, x: "100%" }}
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: "100%" }}
