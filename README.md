@@ -3,6 +3,9 @@
 ## Description
 **TokenStats** is a **cryptocurrency tracker** built using **Next.js 14**, **Tailwind CSS**, and the **CoinGecko API**. It provides **real-time updates** on cryptocurrency prices, market caps, and other essential metrics. With a minimal interface and responsive design, TokenStats offers a seamless experience for tracking and analyzing crypto assets. 📊
 
+## Demo
+Check out the live demo of TokenStats [here](https://tokenstats.vercel.app/).
+
 ## Features
 - **Real-time cryptocurrency price updates**
 - market statistics including **volume** and **market cap**
@@ -15,5 +18,4 @@
 ![TokenStats__2](https://github.com/user-attachments/assets/6e97fd23-9a40-45d4-96d6-37c636e95604)
 ![TokenStats_MOB](https://github.com/user-attachments/assets/49826a13-9c64-4568-a620-05dd3b039557)
 
-## Demo
-Check out the live demo of TokenStats [here](https://tokenstats.vercel.app/).
+
