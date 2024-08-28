@@ -12,7 +12,7 @@
 - Beautiful UI built with **Tailwind CSS**
 - Fetches data from **CoinGecko API**
 
-- ## Demo
+  ## Demo
 Check out the live demo of TokenStats [here](https://tokenstats.vercel.app/).
 
 ## Screenshots
