@@ -31,10 +31,10 @@ const Table: React.FC = () => {
           }
         );
         const result: CryptoCoin[] = await response.json();
-        console.log("Fetched Data:", result); 
+        // console.log("Fetched Data:", result); 
         setData(result);
       } catch (error) {
-        console.error("Error fetching crypto data:", error);
+        // console.error("Error fetching crypto data:", error);
       } finally {
         setLoading(false);
       }
