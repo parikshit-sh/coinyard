@@ -66,15 +66,15 @@ const Navbar = () => {
         <a href="/"><div className="text-2xl font-semibold cursor-pointer">tokenstats</div></a>
 
         
-        <ul className="hidden md:flex md:gap-8 flex-grow justify-center">
+        <ul className="hidden md:flex md:gap-16 flex-grow justify-center">
           <li className="cursor-pointer">
-            <a href="#hero">Home</a>
+            <a href="#hero" className="hover:text-[#c165ff] transition ease-in-out">Home</a>
           </li>
           <li className="cursor-pointer">
-            <a href="#market">Market</a>
+            <a href="#market" className="hover:text-[#c165ff] transition ease-in-out">Market</a>
           </li>
           <li className="cursor-pointer">
-            <a href="#about">About Us</a>
+            <a href="#about" className="hover:text-[#c165ff] transition ease-in-out">About Us</a>
           </li>
         </ul>
 

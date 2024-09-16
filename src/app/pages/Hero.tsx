@@ -134,7 +134,8 @@ const Hero = () => {
             coins.map((coin) => (
               <div
                 key={coin.id}
-                className="relative flex flex-col items-center rounded-md p-2 justify-center"
+                className="relative flex flex-col items-center rounded-md p-2 justify-center 
+                hover:scale-110 transition ease-out cursor-pointer"
               >
                 <Image
                   src={coin.image}
