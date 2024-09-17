@@ -68,7 +68,7 @@ const Table: React.FC = () => {
     ) : (
       <div className="table-container overflow-x-auto bg-transparent shadow-md rounded-md max-w-[344px] mx-auto sm:max-w-full">
         <div className="min-w-full">
-          <table id="mkt" className="min-w-full divide-y divide-gray-200 table-fixed sm:table-auto">
+          <table id="mkt" className="min-w-full table-fixed sm:table-auto">
             <thead className="bg-[#610AEC] border-none">
               <tr>
                 <th className="px-2 py-2 text-left text-xl font-semibold tracking-wider sm:px-6 sm:py-3 text-white border-none">
@@ -88,7 +88,7 @@ const Table: React.FC = () => {
                 </th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-200">
+            <tbody className="divide-y divide-gray-400">
               {currentItems.length === 0 ? (
                 <tr>
                   <td
@@ -112,9 +112,9 @@ const Table: React.FC = () => {
                         <Image
                           src={coin.image}
                           alt={coin.id}
-                          width="100"
-                          height="100"
-                          className="w-6 h-6 mr-2 rounded-full sm:w-8 sm:h-8"
+                          width={50}
+                          height={50}
+                          className="w-12 h-12 mr-2 rounded-full sm:w-8 sm:h-8"
                         />
                         <span className="coin-id md:hidden">{coin.id}</span>
                         <span className="hidden md:table-cell text-lg capitalize">
