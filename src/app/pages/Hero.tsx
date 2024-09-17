@@ -150,8 +150,8 @@ const Hero = () => {
                 <span
                   className={`text-sm md:text-base lg:text-lg font-semibold ${
                     coin.price_change_percentage_24h >= 0
-                      ? "text-green-600"
-                      : "text-red-600"
+                      ? "text-green-500"
+                      : "text-red-500"
                   }`}
                 >
                   {coin.price_change_percentage_24h.toFixed(2)}%

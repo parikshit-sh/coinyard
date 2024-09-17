@@ -137,8 +137,8 @@ const Table: React.FC = () => {
                       <td
                         className={`hidden lg:table-cell px-2 py-4 whitespace-nowrap text-lg sm:px-6 sm:py-4 ${
                           coin.price_change_percentage_24h > 0
-                            ? "text-green-600"
-                            : "text-red-600"
+                            ? "text-green-500 font-semibold"
+                            : "text-red-500 font-semibold"
                         }`}
                       >
                         {coin.price_change_percentage_24h.toFixed(2)}%
