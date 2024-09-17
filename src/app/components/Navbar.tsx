@@ -121,7 +121,7 @@ const Navbar = () => {
             onClick={toggleMenu}
             aria-label="Toggle mobile menu"
           >
-            &#9776;
+           ☰
           </button>
         </div>
       </nav>
