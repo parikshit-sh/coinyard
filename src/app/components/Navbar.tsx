@@ -74,7 +74,7 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0">
-              <div className="text-2xl font-bold cursor-pointer bg-gradient-to-r from-blue-500 to-purple-600 text-transparent bg-clip-text">
+              <div className="text-2xl font-bold cursor-pointer bg-blue-500 text-transparent bg-clip-text">
                 TokenStats
               </div>
             </Link>

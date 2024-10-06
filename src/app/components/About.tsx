@@ -22,7 +22,7 @@ const About = () => {
             </p>
             <motion.a
               href="#"
-              className="inline-block px-8 py-3 rounded-full bg-blue-500 dark:bg-purple-600 text-white font-semibold hover:bg-blue-600 dark:hover:bg-purple-700 transition duration-300"
+              className="inline-block px-8 py-3 rounded-full text-white font-semibold bg-blue-500 hover:bg-blue-600 transition duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
@@ -43,14 +43,14 @@ const About = () => {
         <motion.div className="flex flex-col md:flex-row-reverse items-center justify-between mb-20" {...fadeInUp}>
           <div className="md:w-1/2 mb-10 md:mb-0">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-blue-500 to-purple-600 text-transparent bg-clip-text">24/7</span> Access to Customer Support
+              <span className="bg-gradient-to-r from-cyan-500 to-purple-600 text-transparent bg-clip-text">24/7</span> Access to Customer Support
             </h2>
             <p className="text-lg mb-8 text-gray-600 dark:text-gray-400">
               Our dedicated support team is available around the clock to assist you with any queries or issues. Whether you&apos;re a beginner or an expert, we&apos;re here to help.
             </p>
             <motion.a
               href="#"
-              className="inline-block px-8 py-3 rounded-full bg-blue-500 dark:bg-purple-600 text-white font-semibold hover:bg-blue-600 dark:hover:bg-purple-700 transition duration-300"
+              className="inline-block px-8 py-3 rounded-full bg-blue-500 hover:bg-blue-600 text-white font-semibold transition duration-300"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

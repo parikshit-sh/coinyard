@@ -58,7 +58,7 @@ const Table: React.FC = () => {
 
   return (
     <div className="py-4 pt-20 px-4 md:px-8 lg:px-16" id="market">
-      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-12 text-center text-gray-800 dark:text-gray-200">
+      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-12 text-center dark:bg-clip-text dark:text-blue-50 font-mono uppercase">
         Market Update
       </h2>
       {loading ? (
@@ -74,10 +74,10 @@ const Table: React.FC = () => {
           className="overflow-x-auto bg-white dark:bg-gray-800 shadow-lg rounded-lg"
         >
           <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-            <thead className="bg-gray-50 dark:bg-gray-700">
+            <thead className="bg-slate-600 text-white">
               <tr>
                 {["Coin", "Price", "24h Change", "Market Cap"].map((header) => (
-                  <th key={header} className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                  <th key={header} className="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">
                     {header}
                   </th>
                 ))}

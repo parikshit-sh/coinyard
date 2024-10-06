@@ -91,7 +91,7 @@ const Coin: React.FC = () => {
         break;
       case 'all':
       default:
-        startDate = new Date(0); // Unix epoch
+        startDate = new Date(0);
         dataPoints = prices.length;
     }
 
@@ -141,7 +141,7 @@ const Coin: React.FC = () => {
   const formatTooltip = (value: number) => `$${value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
   return (
-    <div className="min-h-screen pt-24  text-gray-900 dark:text-gray-100">
+    <div className="min-h-screen pt-24 text-gray-900 dark:text-gray-100">
       <Navbar />
       <AnimatePresence>
         <motion.div
@@ -149,25 +149,25 @@ const Coin: React.FC = () => {
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -20 }}
           transition={{ duration: 0.5 }}
-          className="container mx-auto px-4 py-12"
+          className="container mx-auto px-4 py-8"
         >
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.2 }}
-              className="col-span-full bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 flex items-center"
+              className="col-span-full bg-white dark:bg-gray-900 rounded-xl border-3 border-gray-300 dark:border-gray-600 p-4 flex items-center"
             >
               <Image
                 src={coinData.image.large}
                 alt={coinData.name}
-                width={64}
-                height={64}
-                className="w-16 h-16 rounded-full mr-4"
+                width={48}
+                height={48}
+                className="w-12 h-12 rounded-full mr-3"
               />
               <div>
-                <h1 className="text-3xl font-bold">{coinData.name}</h1>
-                <p className="text-lg text-gray-600 dark:text-gray-400">{coinData.symbol.toUpperCase()}</p>
+                <h1 className="text-2xl font-bold">{coinData.name}</h1>
+                <p className="text-sm text-gray-600 dark:text-gray-400">{coinData.symbol.toUpperCase()}</p>
               </div>
             </motion.div>
 
@@ -175,13 +175,13 @@ const Coin: React.FC = () => {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 h-full"
+              className="bg-white dark:bg-gray-900 rounded-xl border-3 border-gray-300 dark:border-gray-600 p-4"
             >
-              <h2 className="text-xl font-semibold mb-4">Price Info</h2>
-              <p className="text-3xl font-bold mb-2">
+              <h2 className="text-lg font-semibold mb-2">Price Info</h2>
+              <p className="text-2xl font-bold mb-1">
                 ${coinData.market_data.current_price.usd.toLocaleString()}
               </p>
-              <p className={`text-lg font-medium ${coinData.market_data.price_change_percentage_24h > 0 ? "text-green-500" : "text-red-500"}`}>
+              <p className={`text-sm font-medium ${coinData.market_data.price_change_percentage_24h > 0 ? "text-green-500" : "text-red-500"}`}>
                 {coinData.market_data.price_change_percentage_24h.toFixed(2)}% (24h)
               </p>
             </motion.div>
@@ -190,13 +190,13 @@ const Coin: React.FC = () => {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.4 }}
-              className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 h-full"
+              className="bg-white dark:bg-gray-900 rounded-xl border-3 border-gray-300 dark:border-gray-600 p-4"
             >
-              <h2 className="text-xl font-semibold mb-4">Market Info</h2>
-              <p className="mb-2">
+              <h2 className="text-lg font-semibold mb-2">Market Info</h2>
+              <p className="text-sm mb-1">
                 <span className="font-medium">Market Cap:</span> ${coinData.market_data.market_cap.usd.toLocaleString()}
               </p>
-              <p>
+              <p className="text-sm">
                 <span className="font-medium">24h Volume:</span> ${coinData.market_data.total_volume.usd.toLocaleString()}
               </p>
             </motion.div>
@@ -205,35 +205,33 @@ const Coin: React.FC = () => {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 h-full"
+              className="bg-white dark:bg-gray-900 rounded-xl border-3 border-gray-300 dark:border-gray-600 p-4"
             >
-              <h2 className="text-xl font-semibold mb-4">24h Range</h2>
-              <p className="mb-2">
+              <h2 className="text-lg font-semibold mb-2">24h Range</h2>
+              <p className="text-sm mb-1">
                 <span className="font-medium">High:</span> ${coinData.market_data.high_24h.usd.toLocaleString()}
               </p>
-              <p>
+              <p className="text-sm">
                 <span className="font-medium">Low:</span> ${coinData.market_data.low_24h.usd.toLocaleString()}
               </p>
             </motion.div>
-
-            
 
             <motion.div
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.6 }}
-              className="col-span-full md:col-span-2 bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6"
+              className="col-span-full md:col-span-2 bg-white dark:bg-gray-900 rounded-xl border-3 border-gray-300 dark:border-gray-600 p-4"
             >
-              <h2 className="text-xl font-semibold mb-4">Price Chart</h2>
-              <div className="mb-4 flex flex-wrap gap-2">
+              <h2 className="text-lg font-semibold mb-3">Price Chart</h2>
+              <div className="mb-3 flex flex-wrap gap-2">
                 {['1h', '24h', '1w', '1m', '3m', '1y', 'all'].map((range) => (
                   <motion.button
                     key={range}
                     onClick={() => setTimeRange(range)}
-                    className={`px-3 py-1 rounded-full text-sm font-medium transition-all duration-200 ${
+                    className={`px-2 py-1 rounded-full text-xs font-medium transition-all duration-200 ${
                       timeRange === range
                         ? 'bg-blue-500 text-white'
-                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
+                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700'
                     }`}
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
@@ -242,44 +240,38 @@ const Coin: React.FC = () => {
                   </motion.button>
                 ))}
               </div>
-              <div className="h-80">
+              <div className="h-64">
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={chartData}>
-                    <defs>
-                      <linearGradient id="colorUv" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="5%" stopColor="#3B82F6" stopOpacity={0.8}/>
-                        <stop offset="95%" stopColor="#3B82F6" stopOpacity={0}/>
-                      </linearGradient>
-                    </defs>
+                    <Area 
+                      type="monotone" 
+                      dataKey="price" 
+                      stroke="#3B82F6" 
+                      fill="#3B82F6"
+                      fillOpacity={0.1}
+                    />
                     <XAxis 
                       dataKey="date" 
-                      stroke="#6B7280" 
-                      tick={{ fill: '#6B7280' }}
+                      axisLine={false}
                       tickLine={false}
+                      tick={{ fontSize: 10, fill: '#6B7280' }}
                     />
                     <YAxis 
-                      stroke="#6B7280" 
-                      tickFormatter={formatYAxis}
-                      tick={{ fill: '#6B7280' }}
-                      tickLine={false}
                       axisLine={false}
+                      tickLine={false}
+                      tick={{ fontSize: 10, fill: '#6B7280' }}
+                      tickFormatter={formatYAxis}
                     />
                     <Tooltip
                       contentStyle={{
                         backgroundColor: 'rgba(255, 255, 255, 0.8)',
                         border: 'none',
-                        borderRadius: '0.375rem',
-                        boxShadow: '0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)',
+                        borderRadius: '0.25rem',
+                        fontSize: '0.75rem',
+                        boxShadow: '0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)',
                       }}
                       formatter={formatTooltip}
                       labelFormatter={(label) => `Date: ${label}`}
-                    />
-                    <Area 
-                      type="monotone" 
-                      dataKey="price" 
-                      stroke="#3B82F6" 
-                      fillOpacity={1}
-                      fill="url(#colorUv)"
                     />
                   </AreaChart>
                 </ResponsiveContainer>
@@ -289,20 +281,19 @@ const Coin: React.FC = () => {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="bg-white dark:bg-gray-800 
-              rounded-2xl shadow-lg  col-span-full md:col-span-1 w-full text-xs"
+              className="bg-white dark:bg-gray-900 rounded-xl border-3 border-gray-300 dark:border-gray-600 col-span-full md:col-span-1 w-full"
             >
-              <h2 className="text-xl font-semibold mb-4 p-5">Coin Metrics</h2>
-              <div className="h-80">
+              <h2 className="text-lg font-semibold mb-3 p-4">Coin Metrics</h2>
+              <div className="h-64">
                 <ResponsiveContainer width="100%" height="100%">
-                  <RadarChart outerRadius={90} width={730} height={250} data={radarData}>
+                  <RadarChart outerRadius={70} width={730} height={250} data={radarData}>
                     <PolarGrid stroke="#718096" />
-                    <PolarAngleAxis dataKey="subject" tick={{ fill: '#718096' }} />
-                    <PolarRadiusAxis angle={30} domain={[0, 'auto']} tick={{ fill: '#718096' }} />
+                    <PolarAngleAxis dataKey="subject" tick={{ fill: '#718096', fontSize: 10 }} />
+                    <PolarRadiusAxis angle={30} domain={[0, 'auto']} tick={{ fill: '#718096', fontSize: 10 }} />
                     <Radar name={coinData.name} dataKey="A" stroke="#3B82F6" fill="#3B82F6" fillOpacity={0.6} />
                     <Radar name="Full Mark" dataKey="fullMark" stroke="#10B981" fill="#10B981" fillOpacity={0.6} />
-                    <Legend wrapperStyle={{ color: '#718096' }} />
-                    <Tooltip contentStyle={{ backgroundColor: 'rgba(255, 255, 255, 0.8)', color: '#1F2937' }} />
+                    <Legend wrapperStyle={{ color: '#718096', fontSize: 10 }} />
+                    <Tooltip contentStyle={{ backgroundColor: 'rgba(255, 255, 255, 0.8)', color: '#1F2937', fontSize: 10 }} />
                   </RadarChart>
                 </ResponsiveContainer>
               </div>
@@ -312,11 +303,10 @@ const Coin: React.FC = () => {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.8 }}
-              className="col-span-full
-               md:col-span-3 bg-white dark:bg-gray-800 rounded-2xl shadow-lg px-5 py-14"
+              className="col-span-full md:col-span-3 bg-white dark:bg-gray-900 rounded-xl border-3 border-gray-300 dark:border-gray-600 px-4 py-6"
             >
-              <h2 className="text-md font-semibold mb-4 max-w-4xl mx-auto">About {coinData.name}</h2>
-              <p className="leading-relaxed max-w-4xl mx-auto text-sm" dangerouslySetInnerHTML={{ __html: coinData.description.en }}></p>
+              <h2 className="text-lg font-semibold mb-3 max-w-4xl mx-auto">About {coinData.name}</h2>
+              <p className="leading-relaxed max-w-4xl mx-auto text-xs" dangerouslySetInnerHTML={{ __html: coinData.description.en }}></p>
             </motion.div>
           </div>
         </motion.div>
