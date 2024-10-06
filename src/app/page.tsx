@@ -47,12 +47,14 @@ export default function Home() {
   }
 
   return (
-    <>
+    <div className="flex flex-col min-h-screen">
       <Navbar />
-      <Hero />
-      <Table />
-      <About />
+      <main className="flex-grow">
+        <Hero />
+        <Table />
+        <About />
+      </main>
       <Footer />
-    </>
+    </div>
   );
 }
