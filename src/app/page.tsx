@@ -17,17 +17,14 @@ export default function Home() {
 
     const checkLoadingState = () => {
       if (document.readyState === 'complete') {
-        
         loadingTimeout = setTimeout(() => setLoading(false), minLoadingDuration);
       } else {
-       
         const handleLoad = () => {
-          clearTimeout(loadingTimeout); 
+          clearTimeout(loadingTimeout);
           setLoading(false);
         };
 
         window.addEventListener('load', handleLoad);
-
         loadingTimeout = setTimeout(() => setLoading(false), minLoadingDuration);
 
         return () => {
@@ -37,21 +34,25 @@ export default function Home() {
       }
     };
 
-    checkLoadingState(); 
+    checkLoadingState();
 
+    // Clean up function to remove the cz-shortcut-listen attribute
+    return () => {
+      document.body.removeAttribute('cz-shortcut-listen');
+    };
   }, []);
 
   if (loading) {
-    return <Loading />; 
+    return <Loading />;
   }
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
+    <>
       <Navbar />
       <Hero />
       <Table />
       <About />
       <Footer />
-    </main>
+    </>
   );
 }

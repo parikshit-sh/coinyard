@@ -1,8 +1,9 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import "../globals.css";
-
 import Image from "next/image";
+import { motion } from "framer-motion";
+import Link from 'next/link';
 
 interface CryptoCoin {
   id: string;
@@ -31,10 +32,9 @@ const Table: React.FC = () => {
           }
         );
         const result: CryptoCoin[] = await response.json();
-        // console.log("Fetched Data:", result);
         setData(result);
       } catch (error) {
-        // console.error("Error fetching crypto data:", error);
+        console.error("Error fetching crypto data:", error);
       } finally {
         setLoading(false);
       }
@@ -56,137 +56,124 @@ const Table: React.FC = () => {
   };
 
   return (
-    <div className="py-4 pt-20" id="market">
-      <h2 className="market-head text-2xl md:text-4xl lg:text-5xl font-semibold mb-12 text-center">
+    <div className="py-4 pt-20 px-4 md:px-8 lg:px-16" id="market">
+      <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-12 text-center text-gray-800 dark:text-gray-200">
         Market Update
       </h2>
       {loading ? (
-        <div className="flex flex-col items-center justify-center col-span-2 md:col-span-4 ">
-          <div className="w-12 h-12 border-4 border-t-4 border-pink-500 border-t-transparent rounded-full animate-spin"></div>
-          <p className="mt-2">Loading Coins...</p>
+        <div className="flex flex-col items-center justify-center h-64">
+          <div className="w-12 h-12 border-4 border-t-4 border-blue-500 border-t-transparent rounded-full animate-spin"></div>
+          <p className="mt-4 text-gray-600 dark:text-gray-400">Loading Coins...</p>
         </div>
       ) : (
-        <div className="table-container overflow-x-auto bg-transparent shadow-md rounded-md max-w-[344px] mx-auto sm:max-w-full">
-          <div className="min-w-full">
-            <table id="mkt" className="min-w-full table-fixed sm:table-auto">
-              <thead className="bg-[#610AEC] border-none">
-                <tr>
-                  <th className="px-2 py-2 text-left text-xl font-semibold tracking-wider sm:px-6 sm:py-3 text-white border-none">
-                    Coin
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="overflow-x-auto bg-white dark:bg-gray-800 shadow-lg rounded-lg"
+        >
+          <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+            <thead className="bg-gray-50 dark:bg-gray-700">
+              <tr>
+                {["Coin", "Price", "24h Change", "Market Cap"].map((header) => (
+                  <th key={header} className="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-300 uppercase tracking-wider">
+                    {header}
                   </th>
-                  <th className="px-2 py-2 text-left text-xl font-semibold tracking-wider sm:px-6 sm:py-3 text-white border-none">
-                    Price
-                  </th>
-                  <th className="px-2 py-2 text-left text-xl font-semibold tracking-wider sm:px-6 sm:py-3 text-white border-none">
-                    Total Volume
-                  </th>
-                  <th className="hidden lg:table-cell px-2 py-2 text-left text-xl font-semibold tracking-wider sm:px-6 sm:py-3 text-white border-none">
-                    Market Cap
-                  </th>
-                  <th
-                    className="hidden lg:table-cell px-2 py-2 text-left text-xl 
-                  font-semibold tracking-wider sm:px-6 sm:py-3 text-white border-none"
-                  >
-                    Price Change
-                  </th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-gray-400">
-                {currentItems.length === 0 ? (
-                  <tr>
-                    <td
-                      colSpan={5}
-                      className="px-2 py-4 text-center text-sm text-gray-500"
-                    >
-                      <div className="flex flex-col items-center justify-center col-span-2 md:col-span-4 h-48">
-                        <div className="w-12 h-12 border-4 border-t-4 border-pink-500 border-t-transparent rounded-full animate-spin"></div>
-                        <p className="mt-2">Loading Coins...</p>
+                ))}
+              </tr>
+            </thead>
+            <tbody className="bg-white dark:bg-gray-800 divide-y divide-gray-200 dark:divide-gray-700">
+              {currentItems.map((coin: CryptoCoin) => (
+                <tr key={coin.id} className="hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors duration-200">
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <Link href={`/coin/${coin.id}`}>
+                      <div className="flex items-center cursor-pointer">
+                        <Image
+                          src={coin.image}
+                          alt={coin.id}
+                          width={24}
+                          height={24}
+                          className="w-6 h-6 rounded-full mr-3"
+                        />
+                        <span className="font-medium text-gray-900 dark:text-gray-100 capitalize">{coin.id}</span>
                       </div>
-                    </td>
-                  </tr>
-                ) : (
-                  currentItems.map((coin: CryptoCoin) => (
-                    <tr
-                      key={coin.id}
-                      className="hover:bg-[#514287] hover:bg-opacity-30 cursor-pointer"
-                    >
-                      <td className="px-2 py-4 whitespace-nowrap text-xs font-medium sm:px-6 sm:py-4">
-                        <div className="flex items-center">
-                          <Image
-                            src={coin.image}
-                            alt={coin.id}
-                            width={30}
-                            height={30}
-                            className="w-10 h-10 mr-2 rounded-full sm:w-8 sm:h-8"
-                          />
-                          <span className="coin-id md:hidden">{coin.id}</span>
-                          <span className="hidden md:table-cell text-lg capitalize">
-                            {coin.id}
-                          </span>
-                        </div>
-                      </td>
-                      <td className="px-2 py-4 whitespace-nowrap text-lg sm:px-6 sm:py-4">
-                        ${coin.current_price.toLocaleString()}
-                      </td>
-                      <td className="px-2 py-4 whitespace-nowrap text-lg text-semibold sm:px-6 sm:py-4">
-                        {coin.total_volume.toLocaleString()}
-                      </td>
-                      <td className="hidden lg:table-cell px-2 py-4 whitespace-nowrap text-lg sm:px-6 sm:py-4">
-                        ${coin.market_cap.toLocaleString()}
-                      </td>
-                      <td
-                        className={`hidden lg:table-cell px-2 py-4 whitespace-nowrap text-lg sm:px-6 sm:py-4 ${
-                          coin.price_change_percentage_24h > 0
-                            ? "text-green-500 font-semibold"
-                            : "text-red-500 font-semibold"
-                        }`}
-                      >
-                        {coin.price_change_percentage_24h.toFixed(2)}%
-                      </td>
-                    </tr>
-                  ))
-                )}
-              </tbody>
-            </table>
-          </div>
-          <div className="px-6 py-3 flex items-center justify-center space-x-2">
-            <a href="#market">
+                    </Link>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">
+                    ${coin.current_price.toLocaleString()}
+                  </td>
+                  <td className={`px-6 py-4 whitespace-nowrap text-sm font-medium ${
+                    coin.price_change_percentage_24h > 0 ? "text-green-600 dark:text-green-400" : "text-red-600 dark:text-red-400"
+                  }`}>
+                    {coin.price_change_percentage_24h.toFixed(2)}%
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-700 dark:text-gray-300">
+                    ${coin.market_cap.toLocaleString()}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+          <div className="px-6 py-4 flex items-center justify-between border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-700">
+            <div className="flex-1 flex justify-between sm:hidden">
               <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
-                className="bg-gray-300 text-gray-600 px-3 py-1 rounded-full text-sm font-medium"
+                className="relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
               >
-                &lt;
+                Previous
               </button>
-            </a>
-            {Array.from(
-              { length: Math.min(totalPages, 6) },
-              (_, i) => i + 1
-            ).map((num) => (
-              <a href="#market" key={`page-link-${num}`}>
-                <button
-                  onClick={() => handlePageChange(num)}
-                  className={`px-3 py-1 rounded-full text-m font-medium ${
-                    num === currentPage
-                      ? "bg-gradient-to-tr from-blue-700 via-purple-600-500 to-pink-500 text-white"
-                      : "bg-gray-200 text-gray-600"
-                  }`}
-                >
-                  {num}
-                </button>
-              </a>
-            ))}
-            <a href="#market">
               <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className="bg-gray-300 text-gray-600 px-3 py-1 rounded-full text-m font-medium"
+                className="ml-3 relative inline-flex items-center px-4 py-2 border border-gray-300 text-sm font-medium rounded-md text-gray-700 bg-white hover:bg-gray-50"
               >
-                &gt;
+                Next
               </button>
-            </a>
+            </div>
+            <div className="hidden sm:flex-1 sm:flex sm:items-center sm:justify-between">
+              <div>
+                <p className="text-sm text-gray-700 dark:text-gray-300">
+                  Showing <span className="font-medium">{indexOfFirstItem + 1}</span> to <span className="font-medium">{Math.min(indexOfLastItem, data.length)}</span> of{' '}
+                  <span className="font-medium">{data.length}</span> results
+                </p>
+              </div>
+              <div>
+                <nav className="relative z-0 inline-flex rounded-md shadow-sm -space-x-px" aria-label="Pagination">
+                  <button
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    disabled={currentPage === 1}
+                    className="relative inline-flex items-center px-2 py-2 rounded-l-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                  >
+                    <span className="sr-only">Previous</span>
+                    &lt;
+                  </button>
+                  {Array.from({ length: Math.min(totalPages, 5) }, (_, i) => i + 1).map((num) => (
+                    <button
+                      key={num}
+                      onClick={() => handlePageChange(num)}
+                      className={`relative inline-flex items-center px-4 py-2 border text-sm font-medium ${
+                        num === currentPage
+                          ? 'z-10 bg-indigo-50 border-indigo-500 text-indigo-600'
+                          : 'bg-white border-gray-300 text-gray-500 hover:bg-gray-50'
+                      }`}
+                    >
+                      {num}
+                    </button>
+                  ))}
+                  <button
+                    onClick={() => handlePageChange(currentPage + 1)}
+                    disabled={currentPage === totalPages}
+                    className="relative inline-flex items-center px-2 py-2 rounded-r-md border border-gray-300 bg-white text-sm font-medium text-gray-500 hover:bg-gray-50"
+                  >
+                    <span className="sr-only">Next</span>
+                    &gt;
+                  </button>
+                </nav>
+              </div>
+            </div>
           </div>
-        </div>
+        </motion.div>
       )}
     </div>
   );

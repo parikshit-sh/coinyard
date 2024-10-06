@@ -1,10 +1,9 @@
 "use client";
-import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
 interface CryptoCoin {
   id: string;
-  image: string;
   current_price: number;
   price_change_percentage_24h: number;
 }
@@ -13,6 +12,15 @@ const Hero = () => {
   const [coins, setCoins] = useState<CryptoCoin[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<boolean>(false);
+  const heroRef = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
+  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   useEffect(() => {
     const fetchPopularCoins = async () => {
@@ -37,143 +45,102 @@ const Hero = () => {
   }, []);
 
   return (
-    <div id="hero">
-      <div className="flex flex-col md:flex-row items-center justify-center 
-      md:justify-between text-[var(--text-color)] relative px-4 md:px-16 py-8 
-      bg-gradient-to-r from-[var(--background-start-rgb)] to-[var(--background-end-rgb)]">
-        <div className="flex flex-col items-center md:items-start justify-center
-         text-center md:text-left w-full md:w-1/2">
-          <h2
-            className="hero-head text-3xl md:text-4xl lg:text-6xl font-semibold"
-            style={{ lineHeight: "1.2" }}
+    <motion.section 
+      ref={heroRef}
+      id="hero" 
+      className="min-h-screen flex items-center justify-center bg-transparent lg:pt-0 pt-20 overflow-hidden"
+      style={{ opacity }}
+    >
+      <div className="container mx-auto px-4 py-16 md:py-24">
+        <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+          <motion.div 
+            className="lg:w-1/2"
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            style={{ y }}
           >
-            Explore The Largest{" "}
-            <span className="bg-gradient-to-r from-blue-900 via-violet-500 to-pink-400 
-            inline-block text-transparent bg-clip-text pr-2">
-              Crypto
-            </span>
-            Marketplaces
-          </h2>
-
-          <p className="pt-2 text-xs md:text-sm lg:text-lg text-gray-400">
-            Track & Trade Cryptocurrency Easily and Securely
-          </p>
-          <div
-            className="hero-btn mt-6 flex flex-col md:flex-row items-center md:items-start gap-2 
-          space-y-2 md:space-y-0 md:space-x-0 z-10 lg:space-x-2"
-          >
-            <a
-              href="#__wallet__"
-              className="hero-btn bg-[#610AEC] p-2 rounded-full text-center text-white sm:w-80 m:w-20 lg:w-36"
-            >
-              Connect Wallet
-            </a>
-            <a
-              href="#market"
-              className="hero-btn bg-transparent border-[var(--text-color)] border p-2 
-              rounded-full text-center sm:w-80 m:w-20 lg:w-36 hover:bg-[#610AEC] 
-              transition ease-in-out hover:text-white"
-            >
-              Explore Market
-            </a>
-          </div>
-        </div>
-        <div className="hidden md:flex w-full md:w-1/2 justify-center md:justify-end mt-10 md:-mt-6">
-          <div className="relative w-full max-w-xs md:max-w-lg lg:max-w-xl">
-            <Image
-              src="/images/stars.png"
-              alt="Star"
-              className="absolute object-cover z-10"
-              width={200}
-              height={200}
-              style={{
-                width: "25%",
-                height: "auto",
-                top: "29%",
-                left: "25%",
-                transform: "translate(-50%, -50%)",
-              }}
-            />
-            <Image
-              src="/images/stars.png"
-              alt="Star"
-              className="absolute object-cover"
-              width={159}
-              height={159}
-              style={{
-                width: "20%",
-                height: "auto",
-                top: "76%",
-                left: "67%",
-                transform: "translate(-50%, -50%) scaleX(-1)",
-              }}
-            />
-            <Image
-              src="/images/3d-cash-money.png"
-              width={700}
-              height={700}
-              alt="3D Cash Money"
-              className="coin-img object-cover"
-            />
-          </div>
-        </div>
-      </div>
-
-     
-      <div className="-mt-8">
-        <div className="bg-transparent grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 
-        lg:grid-cols-6 p-4 mb-12 rounded-xl">
-          {loading ? (
-            <div className="flex flex-col items-center justify-center col-span-2 
-            sm:col-span-2 md:col-span-4 lg:col-span-6 h-48">
-              <div className="w-12 h-12 border-4 border-t-4 border-pink-500 border-t-transparent 
-              rounded-full animate-spin"></div>
-              <p className="mt-2 text-white">Loading Coins...</p>
-            </div>
-          ) : coins.length > 0 ? (
-            coins.map((coin) => (
-              <div
-                key={coin.id}
-                className="relative flex flex-col items-center rounded-md p-2 justify-center 
-                hover:scale-110 transition ease-out cursor-pointer"
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight text-gray-800 dark:text-gray-100">
+              Explore The Largest
+              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-500 to-teal-400">
+                {" "}Crypto Marketplaces
+              </span>
+            </h1>
+            <p className="text-lg md:text-xl mb-10 max-w-2xl text-gray-600 dark:text-gray-300">
+              Track & Trade Cryptocurrency Easily and Securely on Our Modern Blockchain Platform
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <motion.a
+                href="#__wallet__"
+                className="btn bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300 ease-in-out transform hover:scale-105 shadow-lg"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
               >
-                <Image
-                  src={coin.image}
-                  alt={coin.id}
-                  width={50} 
-                  height={50} 
-                  className="w-16 h-16 mb-2 object-cover"
-                />
-                <span className="text-sm md:text-base lg:text-lg font-semibold mb-1">
-                  {coin.id.charAt(0).toUpperCase() + coin.id.slice(1)}
-                </span>
-                <span
-                  className={`text-sm md:text-base lg:text-lg font-semibold ${
-                    coin.price_change_percentage_24h >= 0
-                      ? "text-green-500"
-                      : "text-red-500"
-                  }`}
-                >
-                  {coin.price_change_percentage_24h.toFixed(2)}%
-                </span>
-                <span className="text-sm md:text-base lg:text-lg font-semibold mt-1">
-                  {coin.current_price.toLocaleString("en-US", {
-                    style: "currency",
-                    currency: "USD",
-                  })}
-                </span>
-              </div>
-            ))
-          ) : (
-            <div className="flex flex-col items-center justify-center col-span-2 
-            sm:col-span-2 md:col-span-4 lg:col-span-6 h-48">
-              <div className="w-12 h-12 border-4 border-t-4 border-pink-500 border-t-transparent 
-              rounded-full animate-spin"></div>
+                Connect Wallet
+              </motion.a>
+              <motion.a
+                href="#market"
+                className="btn bg-transparent border-2 border-blue-500 text-blue-500 font-bold py-3 px-6 rounded-lg hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Explore Market
+              </motion.a>
             </div>
-          )}
+          </motion.div>
+          <motion.div 
+            className="lg:w-1/2 mt-12 lg:mt-0"
+            initial={{ opacity: 0, x: 50 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            style={{ y: useTransform(scrollYProgress, [0, 1], ["0%", "25%"]) }}
+          >
+            <div className="bg-white dark:bg-gray-800 p-6 rounded-3xl shadow-xl backdrop-blur-sm bg-opacity-80 dark:bg-opacity-80">
+              <h2 className="text-2xl font-semibold mb-6 text-gray-800 dark:text-gray-100">Live Crypto Prices</h2>
+              {loading ? (
+                <div className="flex justify-center items-center h-48">
+                  <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+                </div>
+              ) : coins.length > 0 ? (
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  {coins.map((coin, index) => (
+                    <motion.div
+                      key={coin.id}
+                      className="bg-gray-50 dark:bg-gray-700 p-6 rounded-2xl shadow-md hover:shadow-lg transition duration-300"
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      whileHover={{ scale: 1.03 }}
+                    >
+                      <div className="flex items-center justify-between mb-2">
+                        <h3 className="text-lg font-semibold capitalize text-gray-800 dark:text-gray-100">{coin.id}</h3>
+                        <span
+                          className={`text-sm font-semibold px-2 py-1 rounded-full ${
+                            coin.price_change_percentage_24h >= 0
+                              ? "bg-green-100 text-green-800 dark:bg-green-800 dark:text-green-100"
+                              : "bg-red-100 text-red-800 dark:bg-red-800 dark:text-red-100"
+                          }`}
+                        >
+                          {coin.price_change_percentage_24h.toFixed(2)}%
+                        </span>
+                      </div>
+                      <p className="text-2xl font-bold text-gray-900 dark:text-gray-50">
+                        {coin.current_price.toLocaleString("en-US", {
+                          style: "currency",
+                          currency: "USD",
+                        })}
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
+              ) : (
+                <div className="text-center text-gray-500 dark:text-gray-400">No data available</div>
+              )}
+            </div>
+          </motion.div>
         </div>
       </div>
-    </div>
+    </motion.section>
   );
 };
 

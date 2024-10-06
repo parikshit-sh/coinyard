@@ -8,10 +8,26 @@ const config: Config = {
     './src/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
-    extend: { 
+    extend: {
+      colors: {
+        light: {
+          primary: '#6C5CE7',
+          secondary: '#00CECE',
+          background: '#FFFFFF',
+          text: '#0F0F1A',
+          accent: '#FF6B6B',
+        },
+        dark: {
+          primary: '#8A7BFF',
+          secondary: '#00FFFF',
+          background: '#0F0F1A',
+          text: '#FFFFFF',
+          accent: '#FF8A8A',
+        },
+      },
     },
   },
   plugins: [],
-  darkMode: 'media'
+  darkMode: 'class'
 };
 export default config;

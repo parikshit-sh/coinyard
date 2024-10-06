@@ -3,181 +3,168 @@ import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter, faDiscord } from "@fortawesome/free-brands-svg-icons";
 import { motion, AnimatePresence } from "framer-motion";
-import { faXmark } from "@fortawesome/free-solid-svg-icons";
+import { faXmark, faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
+import Cookies from "js-cookie";
+import Link from 'next/link';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolling, setScrolling] = useState(false);
+  const [darkMode, setDarkMode] = useState(false);
 
   const toggleMenu = () => {
     setMenuOpen((prevState) => {
       const newState = !prevState;
-     
       document.body.style.overflow = newState ? 'hidden' : 'auto';
       return newState;
     });
   };
 
+  const toggleDarkMode = () => {
+    setDarkMode(!darkMode);
+    Cookies.set("theme", !darkMode ? "dark" : "light", { expires: 365 });
+    document.documentElement.classList.toggle("dark", !darkMode);
+  };
+
+  useEffect(() => {
+    const savedTheme = Cookies.get("theme");
+    if (savedTheme === "dark") {
+      setDarkMode(true);
+      document.documentElement.classList.add("dark");
+    } else {
+      setDarkMode(false);
+      document.documentElement.classList.remove("dark");
+    }
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
-      setScrolling(window.scrollY > 50); 
+      setScrolling(window.scrollY > 10);
     };
 
     window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth >= 768) {
-      
         setMenuOpen(false);
       }
     };
 
     window.addEventListener("resize", handleResize);
-
- 
     handleResize();
-
-   
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
 
   useEffect(() => {
-  
     return () => {
       document.body.style.overflow = 'auto';
     };
   }, []);
 
   return (
-    <header
-      className="fixed w-full top-0 left-0 z-50 transition-all duration-300">
-      <nav className={`flex items-center justify-between py-4 px-4 md:px-8 navbar ${
-        scrolling ? "bg-transparent bg-opacity-80 backdrop-blur-md shadow-lg" : ""
-      }`}>
-       
-        <a href="/"><div className="text-2xl font-semibold cursor-pointer">tokenstats</div></a>
-
-        
-        <ul className="hidden md:flex md:gap-16 flex-grow justify-center">
-          <li className="cursor-pointer">
-            <a href="#hero" className="hover:text-[#c165ff] transition ease-in-out">Home</a>
-          </li>
-          <li className="cursor-pointer">
-            <a href="#market" className="hover:text-[#c165ff] transition ease-in-out">Market</a>
-          </li>
-          <li className="cursor-pointer">
-            <a href="#about" className="hover:text-[#c165ff] transition ease-in-out">About Us</a>
-          </li>
-        </ul>
-
-       
-        <div className="flex items-center">
-          <div className="flex justify-end gap-4">
-            <a
-              href="https://twitter.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-2xl ml-4 md:ml-0"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="22"
-                height="22"
-                fill="currentColor"
-                className="bi bi-twitter-x"
-                viewBox="0 0 16 16"
-              >
-                <path d="M12.6.75h2.454l-5.36 6.142L16 15.25h-4.937l-3.867-5.07-4.425 5.07H.316l5.733-6.57L0 .75h5.063l3.495 4.633L12.601.75Zm-.86 13.028h1.36L4.323 2.145H2.865z" />
-              </svg>
-            </a>
-            <a
-              href="https://discord.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-2xl md:ml-4 pr-4"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="25"
-                height="25"
-                fill="currentColor"
-                className="bi bi-discord"
-                viewBox="0 0 16 16"
-              >
-                <path d="M13.545 2.907a13.2 13.2 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.2 12.2 0 0 0-3.658 0 8 8 0 0 0-.412-.833.05.05 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.04.04 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032q.003.022.021.037a13.3 13.3 0 0 0 3.995 2.02.05.05 0 0 0 .056-.019q.463-.63.818-1.329a.05.05 0 0 0-.01-.059l-.018-.011a9 9 0 0 1-1.248-.595.05.05 0 0 1-.02-.066l.015-.019q.127-.095.248-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.05.05 0 0 1 .053.007q.121.1.248.195a.05.05 0 0 1-.004.085 8 8 0 0 1-1.249.594.05.05 0 0 0-.03.03.05.05 0 0 0 .003.041c.24.465.515.909.817 1.329a.05.05 0 0 0 .056.019 13.2 13.2 0 0 0 4.001-2.02.05.05 0 0 0 .021-.037c.334-3.451-.559-6.449-2.366-9.106a.03.03 0 0 0-.02-.019m-8.198 7.307c-.789 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.45.73 1.438 1.613 0 .888-.637 1.612-1.438 1.612m5.316 0c-.788 0-1.438-.724-1.438-1.612s.637-1.613 1.438-1.613c.807 0 1.451.73 1.438 1.613 0 .888-.631 1.612-1.438 1.612" />
-              </svg>
-            </a>
+    <header className={`fixed w-full top-0 left-0 z-50 transition-all duration-300 ${
+      scrolling ? "bg-white/70 dark:bg-transparent backdrop-blur-md shadow-lg" : ""
+    }`}>
+      <nav className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between h-16">
+          <div className="flex items-center">
+            <Link href="/" className="flex-shrink-0">
+              <div className="text-2xl font-bold cursor-pointer bg-gradient-to-r from-blue-500 to-purple-600 text-transparent bg-clip-text">
+                TokenStats
+              </div>
+            </Link>
+            <div className="hidden md:ml-6 md:flex md:space-x-8">
+              {["Home", "Market",].map((item) => (
+                <Link
+                  key={item}
+                  href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                  className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-purple-400 transition ease-in-out border-b-2 border-transparent hover:border-blue-500 dark:hover:border-purple-400"
+                >
+                  {item}
+                </Link>
+              ))}
+            </div>
           </div>
-          <button
-            className="md:hidden text-2xl"
-            onClick={toggleMenu}
-            aria-label="Toggle mobile menu"
-          >
-           ☰
-          </button>
+          <div className="flex items-center">
+            <button
+              onClick={toggleDarkMode}
+              className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200 mr-4"
+            >
+              <FontAwesomeIcon icon={darkMode ? faSun : faMoon} />
+            </button>
+            <div className="hidden md:flex items-center space-x-4">
+              {[
+                { href: "https://twitter.com", icon: faXTwitter },
+                { href: "https://discord.com", icon: faDiscord },
+              ].map((social) => (
+                <a
+                  key={social.href}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-purple-400 transition-colors duration-200"
+                >
+                  <FontAwesomeIcon icon={social.icon} size="lg" />
+                </a>
+              ))}
+            </div>
+            <button
+              className="md:hidden inline-flex items-center justify-center p-2 rounded-md text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-purple-400 hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blue-500 dark:focus:ring-purple-400"
+              onClick={toggleMenu}
+              aria-label="Toggle mobile menu"
+            >
+              <svg className="h-6 w-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
         </div>
       </nav>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.div
             key="mobile-menu"
-            className="fixed inset-0  bg-[#040740] backdrop-blur-2xl text-white uppercase text-2xl shadow-lg z-50 flex flex-col items-center justify-center overflow-hidden"
-            initial={{ opacity: 0, x: "100%" }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: "100%" }}
+            className="md:hidden bg-white dark:bg-gray-900"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.3 }}
           >
-            <button
-              className="absolute top-4 right-4 text-2xl"
-              onClick={toggleMenu}
-              aria-label="Close mobile menu"
-            >
-              <FontAwesomeIcon icon={faXmark} />
-            </button>
-            <ul className="space-y-4 text-center">
-              <li>
-                <a href="#hero" onClick={toggleMenu}>
-                  Home
-                </a>
-              </li>
-              <li>
-                <a href="#market" onClick={toggleMenu}>
-                  Market
-                </a>
-              </li>
-              <li>
-                <a href="#about" onClick={toggleMenu}>
-                  About Us
-                </a>
-              </li>
-            </ul>
-            <div className="flex gap-4 mt-8">
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-2xl"
-              >
-                <FontAwesomeIcon icon={faXTwitter} />
-              </a>
-              <a
-                href="https://discord.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-2xl"
-              >
-                <FontAwesomeIcon icon={faDiscord} />
-              </a>
+            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+              {["Home", "Market"].map((item) => (
+                <Link
+                  key={item}
+                  href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
+                  className="flex px-3 py-2 rounded-md text-base font-medium
+                   text-gray-700 dark:text-gray-300 hover:text-blue-500
+                    dark:hover:text-purple-400 hover:bg-gray-100 dark:hover:bg-gray-800"
+                  onClick={toggleMenu}
+                >
+                  {item}
+                </Link>
+              ))}
+            </div>
+            <div className="pt-4 pb-3 border-t border-gray-200 dark:border-gray-700">
+              <div className="flex items-center px-5 space-x-4">
+                {[
+                  { href: "https://twitter.com", icon: faXTwitter },
+                  { href: "https://discord.com", icon: faDiscord },
+                ].map((social) => (
+                  <a
+                    key={social.href}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-purple-400 transition-colors duration-200"
+                  >
+                    <FontAwesomeIcon icon={social.icon} size="lg" />
+                  </a>
+                ))}
+              </div>
             </div>
           </motion.div>
         )}
