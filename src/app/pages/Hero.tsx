@@ -80,7 +80,7 @@ const Hero = () => {
               </motion.a>
               <motion.a
                 href="#market"
-                className="btn bg-transparent border-2 border-blue-500 text-blue-500 font-bold py-3 px-6 rounded-lg hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
+                className="btn bg-transparent border-2 border-blue-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-blue-500 hover:text-white transition duration-300 ease-in-out transform hover:scale-105"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >

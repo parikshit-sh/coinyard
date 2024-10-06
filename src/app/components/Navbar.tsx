@@ -4,13 +4,25 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter, faDiscord } from "@fortawesome/free-brands-svg-icons";
 import { motion, AnimatePresence } from "framer-motion";
 import { faXmark, faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
-import Cookies from "js-cookie";
 import Link from 'next/link';
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [scrolling, setScrolling] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    const savedTheme = localStorage.getItem("theme");
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+      setDarkMode(true);
+      document.documentElement.classList.add("dark");
+    } else {
+      setDarkMode(false);
+      document.documentElement.classList.remove("dark");
+    }
+  }, []);
 
   const toggleMenu = () => {
     setMenuOpen((prevState) => {
@@ -21,21 +33,11 @@ const Navbar = () => {
   };
 
   const toggleDarkMode = () => {
+    const newTheme = !darkMode ? 'dark' : 'light';
     setDarkMode(!darkMode);
-    Cookies.set("theme", !darkMode ? "dark" : "light", { expires: 365 });
-    document.documentElement.classList.toggle("dark", !darkMode);
+    localStorage.setItem('theme', newTheme);
+    document.documentElement.classList.toggle("dark");
   };
-
-  useEffect(() => {
-    const savedTheme = Cookies.get("theme");
-    if (savedTheme === "dark") {
-      setDarkMode(true);
-      document.documentElement.classList.add("dark");
-    } else {
-      setDarkMode(false);
-      document.documentElement.classList.remove("dark");
-    }
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
