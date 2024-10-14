@@ -3,8 +3,10 @@ import { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faXTwitter, faDiscord } from "@fortawesome/free-brands-svg-icons";
 import { motion, AnimatePresence } from "framer-motion";
-import { faXmark, faSun, faMoon } from "@fortawesome/free-solid-svg-icons";
+import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import Link from 'next/link';
+import { FiSun } from 'react-icons/fi';
+import { TbMoonFilled } from "react-icons/tb";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -74,8 +76,9 @@ const Navbar = () => {
         <div className="flex justify-between h-16">
           <div className="flex items-center">
             <Link href="/" className="flex-shrink-0">
-              <div className="text-2xl font-bold cursor-pointer bg-blue-500 text-transparent bg-clip-text">
-                TokenStats
+              <div className="text-2xl font-bold cursor-pointer
+              bg-[#9D00FF]  text-transparent bg-clip-text">
+                coinyard
               </div>
             </Link>
             <div className="hidden md:ml-6 md:flex md:space-x-8">
@@ -83,7 +86,7 @@ const Navbar = () => {
                 <Link
                   key={item}
                   href={item === "Home" ? "/" : `/${item.toLowerCase()}`}
-                  className="inline-flex items-center px-1 pt-1 text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-blue-500 dark:hover:text-purple-400 transition ease-in-out border-b-2 border-transparent hover:border-blue-500 dark:hover:border-purple-400"
+                  className="inline-flex items-center px-1 pt-1 text-sm font-medium text-black dark:text-white hover:text-blue-500 dark:hover:text-purple-400 transition ease-in-out border-b-2 border-transparent hover:border-blue-500 dark:hover:border-purple-400"
                 >
                   {item}
                 </Link>
@@ -91,12 +94,24 @@ const Navbar = () => {
             </div>
           </div>
           <div className="flex items-center">
-            <button
+            <motion.button
               onClick={toggleDarkMode}
-              className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors duration-200 mr-4"
+             
+              className={`p-2 rounded-full text-white dark:text-black hover:bg-[#9D00FF]
+              dark:hover:bg-orange-300 focus:outline-none bg-[#9D00FF] transition-colors duration-200 mr-4 ${
+                darkMode ? "bg-[#FBD38D]" : "bg-[#9D00FF]"
+              }`}
+              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.05 }}
             >
-              <FontAwesomeIcon icon={darkMode ? faSun : faMoon} />
-            </button>
+              <motion.div
+                initial={false}
+                animate={{ rotate: darkMode ? 180 : 0 }}
+                transition={{ duration: 0.3 }}
+              >
+                {darkMode ? <FiSun size={20} /> : <TbMoonFilled size={20} />}
+              </motion.div>
+            </motion.button>
             <div className="hidden md:flex items-center space-x-4">
               {[
                 { href: "https://twitter.com", icon: faXTwitter },
@@ -107,7 +122,7 @@ const Navbar = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-purple-400 transition-colors duration-200"
+                  className="text-black dark:text-white dark:hover:text-purple-400 transition-colors duration-200"
                 >
                   <FontAwesomeIcon icon={social.icon} size="lg" />
                 </a>

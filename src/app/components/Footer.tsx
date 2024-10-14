@@ -9,7 +9,7 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           <div>
-            <h2 className="text-2xl font-bold  mb-4">TokenStats</h2>
+            <h2 className="text-2xl font-bold  mb-4">Coinyard</h2>
             <p className="text-sm">
               Empowering investors with real-time cryptocurrency analytics and insights.
             </p>
@@ -50,7 +50,7 @@ const Footer = () => {
               />
               <button
                 type="submit"
-                className="bg-blue-500 text-white px-4 py-2 rounded-r-md hover:bg-blue-600 transition-colors duration-300"
+                className="bg-[#9D00FF] text-white px-4 py-2 rounded-r-md hover:bg-blue-600 transition-colors duration-300"
               >
                 Subscribe
               </button>
@@ -58,7 +58,7 @@ const Footer = () => {
           </div>
         </div>
         <div className="mt-12 pt-8 border-t border-gray-700 flex flex-col sm:flex-row justify-between items-center">
-          <p className="text-sm">&copy; {currentYear} TokenStats. All rights reserved.</p>
+          <p className="text-xl">&copy; {currentYear} Coinyard. All rights reserved.</p>
           <div className="flex space-x-4 mt-4 sm:mt-0">
             {[FaFacebookF, FaTwitter, FaInstagram, FaLinkedinIn].map((Icon, index) => (
               <a

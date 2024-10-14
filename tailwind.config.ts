@@ -1,5 +1,5 @@
 import type { Config } from "tailwindcss";
-
+const defaultTheme = require('tailwindcss/defaultTheme')
 const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -25,6 +25,21 @@ const config: Config = {
           accent: '#FF8A8A',
         },
       },
+      fontFamily:{
+        nebulica:"Nebulica Bold",
+        nebu:"BB Manual",
+        sans:["'M PLUS Rounded 1c'", ...defaultTheme.fontFamily.sans],
+        mPlus: ["'M PLUS Rounded 1c'", ...defaultTheme.fontFamily.sans],
+      },
+      fontWeight:{
+        thin: '100',
+        light: '300',
+        regular: '400',
+        medium: '500',
+        bold: '700',
+        extrabold: '800',
+        black: '900',
+      }
     },
   },
   plugins: [],

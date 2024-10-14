@@ -1,7 +1,7 @@
 import './globals.css';
 
 export const metadata = {
-  title: 'TokenStats - Crypto Tracker',
+  title: 'Coinyard - Crypto Tracker',
   description: 'This is my awesome website',
 };
 

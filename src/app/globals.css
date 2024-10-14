@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@100;300;400;500;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 @tailwind base;
 @tailwind components;
@@ -5,18 +6,32 @@
 
 :root {
   --primary-color: #6C5CE7;
-  --secondary-color: #00CECE;
-  --accent-color: #FF6B6B;
+  --secondary-color: #9D00FF;
+  --accent-color: #9D00FF;
 }
 
+
+@font-face {
+  font-family: "Nebulica Bold";
+  src: url("/fonts/NebulicaBold.woff2") format("woff2");
+  font-display: swap;
+  font-style: normal;
+  font-weight: 400;
+}
+@font-face {
+   font-family:"M Plus Rounded 1c";
+   font-display: swap;
+   font-style: normal;
+   font-weight: 100;
+}
 :root,
 :root.light {
-  --background-color: #FFFFFF;
+  --background-color: #faf6f9;
   --text-color: #000000;
 }
 
 :root.dark {
-  --background-color: #0F0F1A;
+  --background-color: #000000;
   --text-color: #FFFFFF;
 }
 
@@ -36,13 +51,7 @@ body {
   padding: 0 1rem;
 }
 
-.btn {
-  background-color: var(--primary-color);
-  padding: 0.75rem 1.5rem;
-  border-radius: 0.5rem;
-  font-weight: 600;
-  transition: background-color 0.3s ease;
-}
+
 
 .btn:hover {
   background-color: var(--secondary-color);
@@ -73,25 +82,21 @@ body {
 
 /* Scrollbar Styles */
 ::-webkit-scrollbar {
+  background-color: #9D00FF;
   width: 8px;
 }
 
-::-webkit-scrollbar-track {
-  @apply bg-gray-200 dark:bg-gray-700;
-}
 
 ::-webkit-scrollbar-thumb {
-  background: var(--primary-color);
+  background: #9D00FF;
   border-radius: 4px;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: var(--secondary-color);
-}
 
 /* Firefox */
 html {
-  scrollbar-color: var(--primary-color) rgba(255, 255, 255, 0.1);
+  
+  scrollbar-color: #9D00FF;
   scrollbar-width: thin;
 }
 
@@ -116,3 +121,10 @@ html {
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: 'M Plus Rounded 1c', sans-serif;
+}
+
