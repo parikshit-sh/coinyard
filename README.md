@@ -1,7 +1,7 @@
-# TokenStats 🚀
+# Coinyard 🚀
 
 ## Description
-**TokenStats** is a **cryptocurrency tracker** built using **Next.js 14**, **Tailwind CSS**, and the **CoinGecko API**. It provides **real-time updates** on cryptocurrency prices, market caps, and other essential metrics. With a minimal interface and responsive design, TokenStats offers a seamless experience for tracking and analyzing crypto assets. 📊
+**Coinyard** is a **cryptocurrency tracker** built using **Next.js 14**, **Tailwind CSS**, and the **CoinGecko API**. It provides **real-time updates** on cryptocurrency prices, market caps, and other essential metrics. With a minimal interface and responsive design, TokenStats offers a seamless experience for tracking and analyzing crypto assets. 📊
 
 
 
@@ -13,7 +13,7 @@
 - Fetches data from **CoinGecko API**
 
 ## Demo
-Check out the live demo of TokenStats [here](https://tokenstats.vercel.app/).
+Check out the live demo of Coinyard [here](https://tokenstats.vercel.app/).
 
 ## Screenshots
 ![TokenStats__1](https://github.com/user-attachments/assets/f3ebcc54-0b20-4de7-84b0-2048859f8321)
