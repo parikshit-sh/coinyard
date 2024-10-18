@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Image from "next/image";
 
 interface CryptoCoin {
+  symbol:string;
   id: string;
   current_price: number;
   price_change_percentage_24h: number;
@@ -39,8 +40,9 @@ const Hero = () => {
 
   return (
     <section id="hero" className="min-h-screen flex items-center 
-    justify-center  overflow-hidden rounded-xl p-4 relative pt-24 mt-[1rem] lg:pt-0">
-      <div className="container mx-auto px-4 py-16 md:py-24">
+    justify-center  overflow-hidden rounded-xl p-4 relative 
+    pt-24 mt-[1rem] lg:pt-0 px-6">
+      <div className="container mx-auto py-16 md:py-24">
         <div className="flex flex-col lg:flex-row items-center
          justify-between gap-12">
           <motion.div 
@@ -49,26 +51,24 @@ const Hero = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="hero-head text-5xl md:text-7xl 
-            lg:text-8xl font-extrabold mb-6 leading-tight text- dark:text-white
-             font-mPlus text-zinc-800">
+            <h1 className="hero-head text-3xl md:text-7xl font-syne 
+            lg:text-8xl mb-6 
+            leading-tight text- dark:text-white text-zinc-800">
               Explore The Largest
               <span className="bg-clip-text text-transparent
-               bg-[#9D00FF] dark:bg-[#9D00FF]">
+               bg-gradient-to-r from-pink-500 to-[#9D00FF]">
                 {" "}Crypto Marketplaces
               </span>
             </h1>
             <p className="text-2xl md:text-3xl mb-10
-             text-zinc-900 font-bold dark:text-purple-100 font-mPlus">
+             text-zinc-900 font-bold dark:text-purple-100">
               Track & Trade Cryptocurrency Easily on Our Platform.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <motion.a
                 href="#wallet"
-                className="bg-[#9D00FF]
-                 inline-block px-8 py-4 rounded-full 
-                  text-white text-center text-xl
-                 font-semibold transition duration-300 font-mPlus"
+                className="bg-[#9d00FF] text-white text-center h-full py-2 px-4 rounded-lg
+                 hover:shadow-lg  hover:shadow-[#9d00ff83]"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -77,8 +77,9 @@ const Hero = () => {
               <motion.a
                 href="#market"
                 className="dark:bg-white dark:text-black bg-black text-white
-                  font-semibold py-4 px-8 font-mPlus text-xl flex items-center justify-center
-                   rounded-full hover:bg-[#9D00FF]
+                  text-center h-full py-2 px-4 rounded-lg 
+                  hover:shadow-lg  hover:shadow-[#9d00ff83]
+                    hover:bg-[#9D00FF]
                     dark:hover:bg-[#9D00FF] 
                    dark:hover:text-white
                     transition duration-300 ease-in-out transform
@@ -96,7 +97,10 @@ const Hero = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="bg-white/10 dark:bg-blue-950/10 backdrop-filter backdrop-blur-sm p-6 rounded-2xl">
+            <div className="bg-white/10
+             dark:bg-[#121212]
+              backdrop-filter backdrop-blur-sm p-6 
+              rounded-2xl">
               <h2 className="text-xl font-medium mb-4
                text-zinc-900 dark:text-zinc-100 font-mPlus">Live Crypto Prices</h2>
               {loading ? (
@@ -114,12 +118,13 @@ const Hero = () => {
                       <Image
                         src={coin.image}
                         alt={coin.id}
-                        width={32}
-                        height={32}
+                        width={52}
+                        height={52}
                         className="mr-3 rounded-full"
                       />
                       <div>
-                        <h3 className="text-base font-medium mb-1 capitalize text-blue-800 dark:text-blue-100">{coin.id}</h3>
+                        <h3 className="text-base uppercase 
+                        font-medium mb-1 text-blue-800 dark:text-blue-100">{coin.symbol}</h3>
                         <p className="text-lg font-semibold mb-1 text-blue-900 dark:text-blue-50">
                           {coin.current_price.toLocaleString("en-US", {
                             style: "currency",

@@ -26,8 +26,7 @@ const config: Config = {
         },
       },
       fontFamily:{
-        nebulica:"Nebulica Bold",
-        nebu:"BB Manual",
+        lato:["Lato",...defaultTheme.fontFamily.sans],
         sans:["'M PLUS Rounded 1c'", ...defaultTheme.fontFamily.sans],
         mPlus: ["'M PLUS Rounded 1c'", ...defaultTheme.fontFamily.sans],
       },

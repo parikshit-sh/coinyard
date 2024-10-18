@@ -164,7 +164,7 @@ const Coin: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-screen bg-gray-100 dark:bg-black">
+      <div className="flex items-center justify-center h-screen">
         <motion.div
           animate={{ rotate: 360 }}
           transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
@@ -191,7 +191,7 @@ const Coin: React.FC = () => {
   const formatTooltip = (value: number) => `$${value.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 
   return (
-    <div className="min-h-screen bg-gray-100 text-gray-900 dark:bg-black pt-[5.4rem]">
+    <div className="min-h-screen pt-[5.4rem]">
       <Navbar />
       <AnimatePresence>
         <motion.div
@@ -213,7 +213,7 @@ const Coin: React.FC = () => {
               />
               <div>
                 <h1 className="text-3xl font-bold
-                 dark:text-white font-mPlus">{coinData.name}</h1>
+                 dark:text-white font-syne">{coinData.name}</h1>
                 <p className="text-gray-600 dark:text-gray-400">{coinData.symbol.toUpperCase()}</p>
               </div>
             </div>
@@ -222,7 +222,7 @@ const Coin: React.FC = () => {
               <div className="bg-gray-50 text-black dark:bg-[#121212]
                dark:text-white rounded-lg p-4">
                 <h2 className="text-lg font-semibold mb-2
-                dark:text-white font-mPlus">Price</h2>
+                dark:text-white font-syne">Price</h2>
                   <p className="text-3xl  font-inter">${coinData.market_data.current_price.usd.toLocaleString()}</p>
                 <p className={`text-sm font-medium  ${coinData.market_data.price_change_percentage_24h > 0 ? "text-green-500" : "text-red-500"}`}>
                   {coinData.market_data.price_change_percentage_24h.toFixed(2)}% (24h)
@@ -231,19 +231,19 @@ const Coin: React.FC = () => {
 
               <div className="bg-gray-50
                dark:bg-[#121212] rounded-lg p-4 text-black dark:text-white">
-                <h2 className="text-xl font-semibold mb-2 font-mPlus">Market Cap</h2>
+                <h2 className="text-xl font-semibold mb-2 font-syne">Market Cap</h2>
                 <p className="text-xl font-inter">${coinData.market_data.market_cap.usd.toLocaleString()}</p>
               </div>
 
               <div className="bg-gray-50 dark:bg-[#121212]
                dark:backdrop-blur-lg rounded-lg p-4 text-black dark:text-white">
-                <h2 className="text-lg font-semibold mb-2 font-mPlus">24h Volume</h2>
+                <h2 className="text-lg font-semibold mb-2 font-syne">24h Volume</h2>
                 <p className="text-xl font-inter">${coinData.market_data.total_volume.usd.toLocaleString()}</p>
               </div>
             </div>
 
             <div className="mb-8">
-              <h2 className="text-2xl font-bold mb-4 text-black dark:text-white font-mPlus">Price Chart</h2>
+              <h2 className="text-2xl font-bold mb-4 text-black dark:text-white font-syne">Price Chart</h2>
               <div className="mb-4 flex flex-wrap gap-2">
                 {['1h', '24h', '1w', '1y'].map((range) => (
                   <button
@@ -259,8 +259,8 @@ const Coin: React.FC = () => {
                   </button>
                 ))}
               </div>
-              <div className="h-80 bg-white dark:bg-[#121212]
-               dark:backdrop-blur-lg rounded-lg p-4">
+              <div className="h-[50vw] md:h-80 bg-white dark:bg-[#121212]
+               dark:backdrop-blur-lg rounded-lg">
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={chartData}>
                     <defs>
@@ -330,11 +330,11 @@ const Coin: React.FC = () => {
 
               <div>
                 <h2 className="text-2xl font-bold mb-4
-                 text-black dark:text-white font-mPlus">About {coinData.name}</h2>
+                 text-black dark:text-white font-syne">About {coinData.name}</h2>
                 <div className="bg-gray-50 dark:bg-[#121212] 
                 rounded-lg p-4 h-80 overflow-y-auto">
-                  <p className="text-xl leading-relaxed text-black dark:text-white
-                  font-mPlus" dangerouslySetInnerHTML={{ __html: coinData.description.en }}></p>
+                  <p className="text-sm leading-relaxed text-black dark:text-white
+                  " dangerouslySetInnerHTML={{ __html: coinData.description.en }}></p>
                 </div>
               </div>
             </div>

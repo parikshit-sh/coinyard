@@ -15,7 +15,9 @@ export default function Home() {
   useEffect(() => {
     setMounted(true);
     document.body.classList.add('transition-colors');
-  }, []);
+  }
+  , []);
+
 
   if (!mounted) {
     return null;

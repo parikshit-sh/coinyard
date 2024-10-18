@@ -9,8 +9,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <head>
+      
         <script dangerouslySetInnerHTML={{
           __html: `
+          
             (function() {
               function getInitialColorMode() {
                 const persistedColorPreference = window.localStorage.getItem('theme');
@@ -28,8 +30,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               const colorMode = getInitialColorMode();
               document.documentElement.classList.add(colorMode);
             })();
-          `,
+          `
+          ,
         }} />
+      
       </head>
       <body>{children}</body>
     </html>
