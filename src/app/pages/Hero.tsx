@@ -97,8 +97,7 @@ const Hero = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="bg-white/10
-             dark:bg-[#121212]
+            <div className="
               backdrop-filter backdrop-blur-sm p-6 
               rounded-2xl">
               <h2 className="text-xl font-medium mb-4
@@ -108,23 +107,17 @@ const Hero = () => {
                   <div className="animate-spin rounded-full h-8 w-8 border-2 border-blue-500 border-t-transparent"></div>
                 </div>
               ) : coins.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-2 lg:grid-cols-2 gap-4 place-items-center">
                   {coins.map((coin) => (
                     <motion.div
                       key={coin.id}
-                      className="p-4 rounded-lg hover:bg-white/5 dark:hover:bg-blue-900/5 transition duration-300 flex items-center"
+                      className="p-4 rounded-lg transition duration-300 flex items-center"
                       whileHover={{ scale: 1.02 }}
                     >
-                      <Image
-                        src={coin.image}
-                        alt={coin.id}
-                        width={52}
-                        height={52}
-                        className="mr-3 rounded-full"
-                      />
+                      
                       <div>
-                        <h3 className="text-base uppercase 
-                        font-medium mb-1 text-blue-800 dark:text-blue-100">{coin.symbol}</h3>
+                        <h3 className="text-lg text-center uppercase 
+                        font-bold mb-1 text-blue-800 dark:text-blue-100">{coin.symbol}</h3>
                         <p className="text-lg font-semibold mb-1 text-blue-900 dark:text-blue-50">
                           {coin.current_price.toLocaleString("en-US", {
                             style: "currency",
