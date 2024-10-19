@@ -1,22 +1,78 @@
 import Image from "next/image";
-import { delay, motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import { useEffect, useState } from "react";
 
 const About = () => {
+  // Define animations for each section
   const fadeInUp = {
-    initial: { opacity: 0, y: 60 },
+    initial: { opacity: 0, y: 80 },
     animate: { opacity: 1, y: 0 },
     transition: { duration: 0.6 }
   };
 
+  const fadeInLeft = {
+    initial: { opacity: 0, x: -80 },
+    animate: { opacity: 1, x: 0 },
+    transition: { duration: 0.6 }
+  };
+
+  const fadeInRight = {
+    initial: { opacity: 0, x: 80 },
+    animate: { opacity: 1, x: 0 },
+    transition: { duration: 0.6 }
+  };
+
+  // Hook to trigger animations when in view
+  const control1 = useAnimation();
+  const control2 = useAnimation();
+  const control3 = useAnimation();
+
+  const [ref1, inView1] = useInView({ threshold: 0.3 }); // Starts animation when 20% of the section is visible
+  const [ref2, inView2] = useInView({ threshold: 0.3 });
+  const [ref3, inView3] = useInView({ threshold: 0.3 });
+
+  const [hasAnimated1, setHasAnimated1] = useState(false);
+  const [hasAnimated2, setHasAnimated2] = useState(false);
+  const [hasAnimated3, setHasAnimated3] = useState(false);
+
+  useEffect(() => {
+    if (inView1 && !hasAnimated1) {
+      control1.start("animate");
+      setHasAnimated1(true);
+    }
+  }, [control1, inView1, hasAnimated1]);
+
+  useEffect(() => {
+    if (inView2 && !hasAnimated2) {
+      control2.start("animate");
+      setHasAnimated2(true);
+    }
+  }, [control2, inView2, hasAnimated2]);
+
+  useEffect(() => {
+    if (inView3 && !hasAnimated3) {
+      control3.start("animate");
+      setHasAnimated3(true);
+    }
+  }, [control3, inView3, hasAnimated3]);
+
   return (
     <section id="about" className="py-16 md:py-24 text-gray-800 dark:text-gray-200 px-6">
       <div className="container mx-auto px-4">
-        <motion.div className="flex flex-col md:flex-row 
-        items-center justify-between mb-20 space-y-10 md:space-y-0
-         md:space-x-10 max-w-6xl"
-         initial={{ opacity: 0, y: 50 }}
-         animate={{ opacity: 1, y: 0 }}
-         transition={{ duration: 0.8 }}>
+        {/* First Section */}
+        <motion.div
+          ref={ref1} // Attach the ref to the element you want to observe
+          className="flex flex-col md:flex-row 
+          items-center justify-between mb-20 space-y-10 md:space-y-0
+           md:space-x-10 max-w-6xl"
+          animate={control1}
+          variants={fadeInLeft}
+          initial="initial"
+          viewport={{
+            once:true
+          }}
+        >
           <div className="md:w-1/2">
             <h2 className="text-3xl 
             md:text-4xl lg:text-5xl font-bold mb-6
@@ -53,10 +109,17 @@ const About = () => {
           </div>
         </motion.div>
 
-        <motion.div className="flex flex-col 
-        md:flex-row-reverse items-center 
-        justify-between mb-20 space-y-10 md:space-y-0 
-        md:space-x-10 max-w-6xl" {...fadeInUp}>
+        {/* Second Section */}
+        <motion.div
+          ref={ref2}
+          className="flex flex-col 
+          md:flex-row-reverse items-center 
+          justify-between mb-20 space-y-10 md:space-y-0 
+          md:space-x-10 max-w-6xl"
+          initial="initial"
+          animate={control2}
+          variants={fadeInRight} // Animation for the second section to come from the right
+        >
           <div className="md:w-1/2">
             <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6 leading-tight">
               <span className="bg-gradient-to-r from-cyan-500 to-purple-600 text-transparent bg-clip-text">24/7</span> Access to Customer Support
@@ -88,29 +151,37 @@ const About = () => {
           </div>
         </motion.div>
 
-        <motion.div className="flex flex-col 
-        items-center justify-center text-center max-w-4xl
-        rounded-lg 
-        mx-auto py-20 " {...fadeInUp}>
-          <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
-            <span className="bg-gradient-to-r from-blue-500 to-purple-600 text-transparent bg-clip-text">Advanced</span> Analytics
-          </h2>
-          <p className="text-lg md:text-xl mb-10 text-gray-600 dark:text-gray-400 leading-relaxed">
-            Gain deep insights into market trends with our advanced analytics tools. Make informed decisions based on real-time data and comprehensive market analysis.
-          </p>
-          <motion.a
-            className="bg-[#9d00FF]  text-white text-center 
-              h-full py-2 rounded-lg 
-               flex justify-center text-sm md:text-lg 
+        {/* Third Section */}
+        <motion.div
+          ref={ref3}
+          className="flex flex-col 
+          md:flex-row-reverse items-center 
+          justify-center mb-20 space-y-10 md:space-y-0 
+          md:space-x-10 max-w-6xl"
+          initial="initial"
+          animate={control3}
+          variants={fadeInUp} // Animation for the third section to come from underneath
+        >
+          <div className="md:w-1/2">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-8 leading-tight">
+              <span className="bg-gradient-to-r from-blue-500 to-purple-600 text-transparent bg-clip-text">Advanced</span> Analytics
+            </h2>
+            <p className="text-lg md:text-xl mb-10 text-gray-600 dark:text-gray-400 leading-relaxed">
+              Gain deep insights into market trends with our advanced analytics tools. Make informed decisions based on real-time data and comprehensive market analysis.
+            </p>
+            <motion.a
+              href="#"
+              className="bg-[#9d00FF]  text-white text-center 
+              h-full py-2 px-4 rounded-lg
+               flex justify-center max-w-sm text-sm md:text-lg 
              transition duration-300
-             shadow-lg
-              mx-auto px-[8.5rem] cursor-pointer hover:z-0 
-              hover:shadow-lg  hover:shadow-[#9d00ff83]" 
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Explore Analytics
-          </motion.a>
+            min-w-11 mx-auto  hover:shadow-lg  hover:shadow-[#9d00ff83]"
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              Learn More
+            </motion.a>
+          </div>
         </motion.div>
       </div>
     </section>
