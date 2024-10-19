@@ -16,8 +16,8 @@
 Check out the live demo of Coinyard [here](https://tokenstats.vercel.app/).
 
 ## Screenshots
-![TokenStats__1](https://github.com/user-attachments/assets/f3ebcc54-0b20-4de7-84b0-2048859f8321)
-![TokenStats__2](https://github.com/user-attachments/assets/6e97fd23-9a40-45d4-96d6-37c636e95604)
-![TokenStats_MOB](https://github.com/user-attachments/assets/49826a13-9c64-4568-a620-05dd3b039557)
+![Macbook-Air-coinyard vercel app (3)](https://github.com/user-attachments/assets/88d2a90a-caff-4290-8513-c2baa72a2a15)
+![Macbook-Air-coinyard vercel app (1)](https://github.com/user-attachments/assets/765f3498-5d17-4048-8c4c-11b8418fc08a)
+![Macbook-Air-coinyard vercel app](https://github.com/user-attachments/assets/63e43086-9f3c-4743-8667-05d42f9319ed)
 
 
